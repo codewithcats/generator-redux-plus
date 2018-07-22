@@ -7,3 +7,7 @@ export type Action<P> = {
   type: string,
   payload: P
 }
+
+export type Reducer<S, P> = (state: S, action: Action<P>) => S
+
+export type Effect = Generator<any, any, any>
