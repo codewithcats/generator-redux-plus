@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/codewithcats/generator-redux-plus/issues"
   },
-  "homepage": "https://github.com/codewithcats/generator-redux-plus#readme"
+  "homepage": "https://github.com/codewithcats/generator-redux-plus#readme",
+  "dependencies": {
+    "yeoman-generator": "^3.0.0"
+  }
 }
