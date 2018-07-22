@@ -15,4 +15,10 @@ yarn add --dev yo @tanawat/generator-redux-plus
 ```
 # The --install flag will install Redux dependencies for you
 npx yo @tanawat/redux-plus:init --install
+
+# or with yarn
+yarn yo @tanawat/redux-plus:init --install
+
+# You can also omit :init since it is the default task
+yarn yo @tanawat/redux-plus --install
 ```
