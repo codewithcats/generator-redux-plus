@@ -1,5 +1,5 @@
 {
-  "name": "generator-redux-plus",
+  "name": "@tanawat/generator-redux-plus",
   "version": "0.0.1",
   "description": "Yeoman generator for Redux-based project plus Redux-saga and Router5",
   "main": "index.js",
