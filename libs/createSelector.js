@@ -15,4 +15,13 @@ module.exports = function(generator, stateName, selectorName) {
       selectors: generator.meta.states[stateName].selectors,
     }
   )
+
+  generator.fs.copyTpl(
+    templatePath('selectors/selector.ejs'),
+    generator.destinationPath(`src/state/${stateName}/selectors/${selectorName}.js`),
+    {
+      state: generator.meta.states[stateName],
+      selector: selectorName,
+    }
+  )
 }
