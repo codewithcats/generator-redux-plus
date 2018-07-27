@@ -12,6 +12,8 @@ module.exports = function(generator, stateName) {
     }
 
     meta.states[stateName] = {
+      name: stateName,
+      flowType: stateType,
       actions: {},
       channels: {},
       effects: {},
@@ -73,11 +75,11 @@ module.exports = function(generator, stateName) {
       }
     )
 
-    // generator.fs.copyTpl(
-    //   templatePath('global.types.ejs'),
-    //   generator.destinationPath(`src/state/types.js`),
-    //   meta,
-    // )
+    generator.fs.copyTpl(
+      templatePath('global.types.ejs'),
+      generator.destinationPath(`src/state/types.js`),
+      meta,
+    )
 
     generator.fs.copyTpl(
       templatePath('store.ejs'),
