@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/codewithcats/generator-redux-plus#readme",
   "dependencies": {
+    "lodash": "^4.17.10",
     "yeoman-generator": "^3.0.0"
   }
 }

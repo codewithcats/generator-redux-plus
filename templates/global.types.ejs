@@ -3,6 +3,10 @@
 
 // @flow
 
+<% for (s in states) { -%>
+import type {<%= s.type %>} from './<%= s.name %>'
+<% } -%>
+
 export type Action<P> = {
   type: string,
   payload: P
@@ -11,3 +15,9 @@ export type Action<P> = {
 export type Reducer<S, P> = (state: S, action: Action<P>) => S
 
 export type Effect = Generator<any, any, any>
+
+export type ApplicationState = {
+<% for (s in states) { -%>
+  <%= s.name %>: <%= s.type %>,
+<% } -%>
+}

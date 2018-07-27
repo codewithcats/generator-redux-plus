@@ -10,7 +10,7 @@ const templatePath = require('./templatePath')
 module.exports = function init(generator) {
 
   generator.fs.writeJSON(
-    generator.destinationPath('src/state/.state/meta.json'),
+    generator.destinationPath('src/state/__state__/meta.json'),
     generator.meta
   )
 
@@ -31,9 +31,11 @@ module.exports = function init(generator) {
   )
 
   generator.fs.copyTpl(
-    templatePath('state.types.ejs'),
+    templatePath('global.types.ejs'),
     generator.destinationPath(`src/state/types.js`),
-    generator.meta
+    {
+      ...generator.meta,
+    }
   )
 
   generator.fs.copyTpl(
