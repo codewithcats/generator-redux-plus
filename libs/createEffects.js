@@ -11,13 +11,10 @@ module.exports = function(generator, stateName, effectName) {
     return
   }
 
-  // console.log(meta.states[stateName].effects.[effectName])
-
-  meta.states[stateName].effects[effectName] = {
-    name: effectName
-  }
-
-  generator.fs.writeJSON(metaPath, meta)
+  generator.meta = _.set(generator.meta, `states.${stateName}.effects.${effectName}`, {
+    name: effectName,
+  })
+  generator.updateMeta()
 
   generator.fs.copyTpl(
     templatePath('effects/index.ejs'),
@@ -28,28 +25,18 @@ module.exports = function(generator, stateName, effectName) {
     }
   )
 
-  // effects: generator.getEffects(stateName),
+  generator.fs.copyTpl(
+    templatePath('effects/effect.ejs'),
+    generator.destinationPath(`src/state/${stateName}/effects/${effectName}.js`),
+    {
+      state: generator.meta.states[stateName],
+      effects: effectName,
+    }
+  )
 
-  // {
-  //   state: stateName,
-  //   effects: {
-  //     effectName: {
-  //       name: effectName
-  //     }
-  //   },
-  // }
-
-
-  // generator.fs.copyTpl(
-  //   templatePath('effect.ejs'),
-  //   generator.destinationPath(`src/state/${stateName}/effects/${effectName}.js`),
-  //   {effect: effectName,}
-  // )
-  //
-  // generator.fs.copyTpl(
-  //   templatePath('../../../templates/store.ejs'),
-  //   generator.destinationPath('src/state/store.js'),
-  //   meta
-  // )
-
+  generator.fs.copyTpl(
+    templatePath('store.ejs'),
+    generator.destinationPath('src/state/store.js'),
+    meta
+  )
 }
