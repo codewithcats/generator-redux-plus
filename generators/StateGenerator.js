@@ -14,6 +14,7 @@ module.exports = class StateGenerator extends Generator {
 
   updateMeta(newMeta = this.meta) {
     this.fs.writeJSON(this.metaPath, newMeta)
+    this.meta = newMeta
   }
 
   getState(stateName) {
