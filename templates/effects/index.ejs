@@ -9,7 +9,7 @@
 import {<%= name %>Effect} from './<%= name %>'
 <% } -%>
 
-export const <%= state %>Effects = [
+export const <%= state.name %>Effects = [
 <% for (fx in effects) {
   const {name} = effects[fx]
 -%>
