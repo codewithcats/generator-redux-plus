@@ -2,31 +2,31 @@ const _ = require('lodash')
 const templatePath = require('./templatePath')
 
 module.exports = function(generator, stateName, channelName) {
-  const metaPath = generator.destinationPath('src/state/__state__/meta.json')
-  const meta = generator.fs.readJSON(metaPath)
+  const meta = generator.meta
 
   if (meta.states[stateName].channels[channelName]) {
     generator.log(`Channel [${channelName}] already been created. Aborted.`)
     return
   }
 
-  meta.states[stateName].channels[channelName] = {
-    name: channelName
-  }
-  
-  generator.updateMeta()
+  _.set(meta, `states.${stateName}.channels.${channelName}`, {
+    name: channelName,
+  })
 
-  generator.fs.writeJSON(metaPath, meta)
+  generator.updateMeta()
 
   generator.fs.copyTpl(
     templatePath('channels/channel.ejs'),
     generator.destinationPath(`src/state/${stateName}/channels/${channelName}.js`),
-    { channel: channelName },
+    { channel: generator.getState(stateName).channels[channelName], },
   )
 
   generator.fs.copyTpl(
     templatePath('channels/index.ejs'),
     generator.destinationPath(`src/state/${stateName}/channels/index.js`),
-    { channels: generator.getChannels(stateName), state: stateName },
+    {
+      channels: generator.getChannels(stateName),
+      state: generator.getState(stateName),
+    },
   )
 }

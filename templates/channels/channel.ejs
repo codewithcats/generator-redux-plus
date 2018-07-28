@@ -2,7 +2,7 @@
 
 import {eventChannel} from 'redux-saga'
 
-export function <%= channel %>() {
+export function <%= channel.name %>() {
   return eventChannel(send => {
     // TODO: add your channel logic here
     return () => {
