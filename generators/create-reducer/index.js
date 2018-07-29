@@ -18,12 +18,19 @@ module.exports = class CreateReducer extends StateGenerator {
     ])
     .then(answers => {
       this.answers = answers
+      const actions = this.getActionNames(answers.stateName)
+
+      if (actions.length < 1) {
+        this.log('No action defined in this state. Aborted')
+        throw new Error('No action')
+      }
+
       return this.prompt([
         {
           type: 'list',
           name: 'actionName',
           message: 'Select an action',
-          choices: this.getActionNames(answers.stateName),
+          choices: actions,
         },
       ])
     })
@@ -40,7 +47,6 @@ module.exports = class CreateReducer extends StateGenerator {
       stateName,
       actionName,
     } = this.answers
-    console.log(stateName)
     createReducer(this, stateName, actionName)
   }
 
