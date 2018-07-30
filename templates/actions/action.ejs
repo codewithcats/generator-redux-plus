@@ -5,13 +5,13 @@ export type <%= action.flowType %>Payload = {
   // TODO: Add payload content
 }
 
-const type = '<%= action.code %>'
+const id = '<%= action.id %>'
 
 export const <%= action.name %> = (): Action<<%= action.flowType %>Payload> => ({
-  type,
+  type: id,
   payload: {
     // TODO: Add payload content
   }
 })
 
-<%= action.name %>.type = type
+<%= action.name %>.id = id

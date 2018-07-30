@@ -3,17 +3,18 @@
 
 // @flow
 
-import type {Action} from '../types'
+import type {Action} from '../../types'
+import type {<%= state.flowType %>} from '../types'
 
 <% actions.forEach(action => { -%>
 import {<%= action.name %>Reducer} from './<%= action.name %>'
 <% }) -%>
 import {initialState} from './initialState'
 
-export const <%= state.name %>Reducer = (state = initialState, action) => {
+export const <%= state.name %>Reducer = (state: <%= state.flowType %> = initialState, action: Action<any>): <%= state.flowType %> => {
   switch (action.type) {
 <% actions.forEach(action => { -%>
-    case types.<%= action.type %>:
+    case '<%= action.id %>':
       return <%= action.name %>Reducer(state, action)
 <% }) -%>
     default:

@@ -7,7 +7,6 @@ module.exports = function(generator, stateName, actionName) {
   generator.updateMeta()
 
   const state = generator.getState(stateName)
-  const reducer = generator.getReducers(stateName)[actionName]
 
   generator.fs.copyTpl(
     templatePath('reducers/reducer.ejs'),
@@ -15,6 +14,18 @@ module.exports = function(generator, stateName, actionName) {
     {
       state,
       action,
+    }
+  )
+
+  const actionsWithReducer = Object.values(generator.getActions(stateName))
+    .filter(action => action.reducer === true)
+
+  generator.fs.copyTpl(
+    templatePath('reducers/index.ejs'),
+    generator.destinationPath(`src/state/${stateName}/reducers/index.js`),
+    {
+      state,
+      actions: actionsWithReducer,
     }
   )
 }

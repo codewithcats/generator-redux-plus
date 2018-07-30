@@ -6,7 +6,7 @@ module.exports = function(generator, stateName, actionName) {
   _.set(meta, `states.${stateName}.actions.${actionName}`, {
     name: actionName,
     flowType: _.capitalize(actionName),
-    code: `${stateName}/${_.toUpper(_.snakeCase(actionName))}`,
+    id: `${stateName}/${_.toUpper(_.snakeCase(actionName))}`,
   })
   generator.updateMeta()
 

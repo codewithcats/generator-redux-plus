@@ -33,10 +33,6 @@ module.exports = class StateGenerator extends Generator {
     return Object.keys(this.getActions(stateName))
   }
 
-  getReducers(stateName) {
-    return this.getState(stateName).reducers
-  }
-
   getChannels(stateName) {
     return this.getState(stateName).channels
   }
