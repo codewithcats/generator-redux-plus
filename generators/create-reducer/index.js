@@ -18,11 +18,13 @@ module.exports = class CreateReducer extends StateGenerator {
     ])
     .then(answers => {
       this.answers = answers
-      const actions = this.getActionNames(answers.stateName)
+      const actions = Object.values(this.getActions(answers.stateName))
+        .filter(action => action.reducer !== true)
+        .map(action => action.name)
 
       if (actions.length < 1) {
-        this.log('No action defined in this state. Aborted')
-        throw new Error('No action')
+        this.log('No action available in this state or all of them already have reducer. Aborted')
+        throw new Error('No action available')
       }
 
       return this.prompt([
