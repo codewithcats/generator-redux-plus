@@ -1,12 +1,11 @@
 const _ = require('lodash')
-const Generator = require('yeoman-generator')
+const StateGenerator = require('../StateGenerator')
 const createState = require('../../libs/createState')
 
-module.exports = class CreateState extends Generator {
+module.exports = class CreateState extends StateGenerator {
 
   constructor(args, opts) {
     super(args, opts)
-
   }
 
   prompting() {
