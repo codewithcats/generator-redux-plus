@@ -1,0 +1,17 @@
+// @flow
+import type {Action} from '../../../state/types'
+
+export type <%= action.flowType %>Payload = {
+  // TODO: Add payload content
+}
+
+const id = '<%= action.id %>'
+
+export const <%= action.name %> = (): Action<<%= action.flowType %>Payload> => ({
+  type: id,
+  payload: {
+    // TODO: Add payload content
+  }
+})
+
+<%= action.name %>.id = id

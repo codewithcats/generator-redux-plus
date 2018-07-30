@@ -3,15 +3,15 @@
 
 // @flow
 
-<% for (ch in channels) {
-  const {name} = channels[ch]
+<% for (sl in selectors) {
+  const {name} = selectors[sl]
 -%>
 import {<%= name %>} from './<%= name %>'
 <% } -%>
 
-export const <%= state.name %>Channels = {
-<% for (ch in channels) {
-  const {name} = channels[ch]
+export const <%= state %>Selectors = {
+<% for (sl in selectors) {
+  const {name} = selectors[sl]
 -%>
   <%= name %>,
 <% } -%>
