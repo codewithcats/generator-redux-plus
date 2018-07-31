@@ -18,7 +18,7 @@ module.exports = class CreateEffects extends StateGenerator {
       {
         type: 'input',
         name: 'effectName',
-        message: 'Enter effetct name:',
+        message: 'Enter effect name:',
       },
     ])
     .then(answers => {

@@ -2,8 +2,7 @@ const _ = require('lodash')
 const templatePath = require('./templatePath')
 
 module.exports = function(generator, stateName, actionName) {
-  const meta = generator.meta
-  _.set(meta, `states.${stateName}.actions.${actionName}`, {
+  _.set(generator.meta, `states.${stateName}.actions.${actionName}`, {
     name: actionName,
     flowType: _.capitalize(actionName),
     id: `${stateName}/${_.toUpper(_.snakeCase(actionName))}`,
@@ -14,8 +13,8 @@ module.exports = function(generator, stateName, actionName) {
     templatePath('actions/index.ejs'),
     generator.destinationPath(`src/state/${stateName}/actions/index.js`),
     {
-      state: stateName,
-      actions: meta.states[stateName].actions,
+      state: generator.getState(stateName),
+      actions: generator.getActions(stateName),
     }
   )
 
@@ -23,7 +22,7 @@ module.exports = function(generator, stateName, actionName) {
     templatePath('actions/action.ejs'),
     generator.destinationPath(`src/state/${stateName}/actions/${actionName}.js`),
     {
-      action: meta.states[stateName].actions[actionName],
+      action: generator.getActions(stateName)[actionName],
     }
   )
 }
