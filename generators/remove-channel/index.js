@@ -19,9 +19,7 @@ module.exports = class CreateAction extends StateGenerator {
       .then(answers => {
         this.answers = answers
         const channels = Object.values(this.getChannels(answers.stateName))
-          .filter(channel => channel.reducer !== true)
-          .map(channel => channel.name)
-
+        
         if (channels.length < 1) {
           this.log(
             'No channel available in this state or all of them already have reducer. Aborted',
