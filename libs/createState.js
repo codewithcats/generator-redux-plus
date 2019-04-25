@@ -16,6 +16,7 @@ module.exports = function(generator, stateName) {
       channels: {},
       effects: {},
       reducers: {},
+      selectors: {},
     })
     generator.updateMeta()
 
