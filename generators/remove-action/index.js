@@ -22,16 +22,16 @@ module.exports = class RemoveAction extends StateGenerator {
 
         if (actions.length < 1) {
           this.log(
-            'No effect available in this state or all of them already have reducer. Aborted',
+            'No action available in this state or all of them already have reducer. Aborted',
           )
-          throw new Error('No effect available')
+          throw new Error('No action available')
         }
 
         return this.prompt([
           {
             type: 'checkbox',
             name: 'actionsName',
-            message: 'Select a effects:',
+            message: 'Select a actions:',
             choices: actions,
           },
         ])
@@ -46,7 +46,6 @@ module.exports = class RemoveAction extends StateGenerator {
 
   writing() {
     const { stateName, actionsName } = this.answers
-    console.log('49', this.answers)
     removeAction(this, stateName, actionsName)
   }
 
