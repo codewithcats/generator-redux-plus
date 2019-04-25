@@ -32,7 +32,7 @@ module.exports = class RemoveAction extends StateGenerator {
           {
             type: 'checkbox',
             name: 'reducersName',
-            message: 'Select a effects:',
+            message: 'Select an actions:',
             choices: reducers,
           },
         ])
