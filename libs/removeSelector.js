@@ -2,9 +2,6 @@ const _ = require('lodash')
 const templatePath = require('./templatePath')
 
 module.exports = function (generator, stateName, selectorsName) {
-  // const selectors = generator.getActions(stateName)[selectorsName]
-  // console.log('6', selectors)
-  console.log('7', selectorsName)
   selectorsName.forEach(selector => {
     _.unset(generator.meta, `states.${stateName}.selectors.${selector}`)
   })
@@ -23,7 +20,7 @@ module.exports = function (generator, stateName, selectorsName) {
     templatePath('selectors/index.ejs'),
     generator.destinationPath(`src/state/${stateName}/selectors/index.js`),
     {
-      selectors: selectorsName,
+      selectors: generator.getSelectors(stateName),
       state: generator.getState(stateName),
     },
   )
