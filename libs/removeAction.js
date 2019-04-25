@@ -17,10 +17,10 @@ module.exports = function (generator, stateName, actionName) {
   })
 
   generator.fs.copyTpl(
-    templatePath('effects/index.ejs'),
+    templatePath('actions/index.ejs'),
     generator.destinationPath(`src/state/${stateName}/actions/index.js`),
     {
-      effects: generator.getActions(stateName),
+      actions: generator.getActions(stateName),
       state: generator.getState(stateName),
     },
   )
