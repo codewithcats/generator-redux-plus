@@ -41,4 +41,8 @@ module.exports = class StateGenerator extends Generator {
     return this.getState(stateName).effects
   }
 
+  getSelectors(stateName) {
+    return this.getState(stateName).selectors
+  }
+
 }
